@@ -12,7 +12,7 @@
   $.fn.extend({
     connect: function(eventType, callback) {
 
-      var self = this;
+      var self = this,
           eventName = arguments.length == 3 ? callback : eventType,
           cb = arguments.length == 3 ? arguments[2] : callback;
 
@@ -70,7 +70,7 @@
             $(this).addClass('playing');
             $(this).append('<span class="glyphicon glyphicon-play play"></span>');
 
-//            $('#play').trigger('click');
+            //$('#play').trigger('click');
             $('#player').fadeIn('slow');
           });
           $searchResults.fadeIn('slow');
