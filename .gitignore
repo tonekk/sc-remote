@@ -1,0 +1,4 @@
+html/*.html
+css/*.css
+node_modules
+.sass-cache
