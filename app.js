@@ -34,8 +34,8 @@ io.on('connection', function(socket) {
 
     var createConnection = function() {
       var con = new RemoodConnection(socket, msg.type);
-      console.log('+ Created new connection with id:', con.id);
-      socket.emit('remood-auth', { id: con.id });
+      console.log('+ Created new connection with id:', con.id());
+      socket.emit('remood-auth', { id: con.id() });
     };
 
     console.log('+ Socket is a ' + msg.type);

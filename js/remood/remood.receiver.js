@@ -3,6 +3,7 @@
   remood = function() {
 
     var socket = io(),
+        connectionIdDeferred = $.Deferred(),
         connectionId,
         self = this;
 
@@ -24,12 +25,17 @@
         socket.emit('remood-auth', { type: 'receiver' });
       } else {
         connectionId = data.id;
+        connectionIdDeferred.resolve();
       }
     });
 
     this.functions = [];
-    this.connectionId = function() {
-      return connectionId;
+
+    // Async because we have to fetch connectionId first
+    this.getConnectionId = function(cb) {
+      connectionIdDeferred.done(function() {
+        cb(connectionId);
+      });
     };
   };
 

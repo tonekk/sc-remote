@@ -12,7 +12,9 @@
 
     // Initialize remood, register remood events
     r = new remood();
-    hash('id', r.connectionId());
+    r.getConnectionId(function(id) {
+      hash('id', id);
+    });
 
     r.on('play', function(msg) {
       widget.play();

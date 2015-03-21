@@ -3,7 +3,7 @@ var randomstring = require('randomstring'),
 
 RemoodConnection = function(socket, type) {
 
-  var id = randomstring(8),
+  var id = randomstring.generate(8),
       receiverSocket,
       remoteSocket;
 
@@ -37,15 +37,6 @@ RemoodConnection = function(socket, type) {
   this.setSocketForType(socket, type);
   connections.push(this);
 };
-
-/*
-RemoodConnection.create = function(socket, type) {
-  debugger;
-  con = new RemoodConnection(socket, type);
-  connections.push(con);
-  return con;
-};
-*/
 
 RemoodConnection.all = function() {
   return connections;
