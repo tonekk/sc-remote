@@ -21,6 +21,7 @@
     "gulp-autoprefixer": "^2.1.0",
     "gulp-ruby-sass": "^1.0.0-alpha.3",
     "gulp-slim": "0.0.13",
-    "gulp-util": "^3.0.4"
+    "gulp-util": "^3.0.4",
+    "mobile-detect": "^0.4.3"
   }
 }
