@@ -1,2 +1,2 @@
-# remood.js
-Finally there is a js library to rem00d
+# sc-remote
+Soundcloud remote using node.js
