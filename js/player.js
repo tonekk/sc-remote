@@ -12,6 +12,7 @@
 
     // Initialize remood, register remood events
     r = new remood();
+    window.r = r;
     r.getConnectionId(function(id) {
       hash('id', id);
     });
