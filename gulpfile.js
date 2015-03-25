@@ -3,7 +3,8 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer'),
     gutil = require('gulp-util'),
     del = require('del')
-    jade = require('gulp-jade');
+    jade = require('gulp-jade'),
+    nodemon = require('nodemon');
 
 gulp.task('sass', function () {
   gulp.src('./sass/*.sass')
@@ -21,6 +22,16 @@ gulp.task('jade', function() {
     .pipe(gulp.dest('./html'))
 });
 
+gulp.task('develop', function () {
+  nodemon({
+    script: './app.js',
+    nodeArgs: ['--debug=31337']
+  })
+  .on('restart', function () {
+    console.log('Server restarted!')
+  })
+});
+
 gulp.task('clean', function(done) {
   del(['./css/*.css', './html/*.html'], done);
 });
@@ -30,4 +41,4 @@ gulp.task('watch', function() {
   gulp.watch('./jade/*.jade', ['jade']);
 });
 
-gulp.task('default', ['sass', 'jade', 'watch']);
+gulp.task('default', ['sass', 'jade', 'watch', 'develop']);
