@@ -8,7 +8,7 @@
     widget = SC.Widget(document.getElementById('sc-widget'));
 
     // Initilize QRCode
-    $('#qr-code').qrcode(window.location.href);
+    $('#qr-code').qrcode(window.location.host + '/remote' + window.location.hash);
 
     // Initialize remood, register remood events
     r = new remood();
