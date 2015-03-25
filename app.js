@@ -29,7 +29,6 @@ io.on('connection', function(socket) {
   console.log('Incomming connection, shaking hands:');
 
   // Handshake
-  socket.emit('remood-auth');
   socket.on('remood-auth', function(msg) {
 
     var createConnection = function() {
@@ -40,7 +39,7 @@ io.on('connection', function(socket) {
 
     console.log('+ Socket is a ' + msg.type);
 
-    if(msg.id) {
+    if (msg.id) {
       con = RemoodConnection.find(msg.id)
       if (con) {
         con.setSocketForType(socket, msg.type);
@@ -54,10 +53,8 @@ io.on('connection', function(socket) {
     }
   });
 
-  socket.on('remood', function(msg) {
-    console.log('remood event triggered: ', msg);
-    socket.broadcast.emit('remood', msg);
-  });
+  socket.emit('remood-auth');
 });
 
-server.listen(1337);
+server.listen(process.env.PORT || 1337);
+console.log('Listening on port ' + (process.env.PORT || 1337) + '...');

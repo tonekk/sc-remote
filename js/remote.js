@@ -1,6 +1,7 @@
 (function($, io) {
 
   $(function() {
+    var r = new remood();
 
     // Bind remood events
     $('#play').connect('click', function() {
