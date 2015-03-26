@@ -29,6 +29,8 @@
       } else {
         if (hash('id')) {
           connectionId = hash('id');
+        } else {
+          return this.emit('remood-auth', { type: window.remoodType });
         }
 
         this.emit('remood-auth', { type: window.remoodType, id: connectionId });
@@ -68,8 +70,8 @@
     }
   };
 
-  remood.prototype.send = function(value, type, id) {
-    this.socket.emit('remood', { type: 'direct', data: value, id: id });
+  remood.prototype.send = function(msg) {
+    this.socket.emit('remood', msg);
   };
 
   // Connect a jQuery event to a remood event

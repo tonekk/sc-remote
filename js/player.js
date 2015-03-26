@@ -7,14 +7,14 @@
     // Initialize SC Player
     widget = SC.Widget(document.getElementById('sc-widget'));
 
-    // Initilize QRCode
-    $('#qr-code').qrcode(window.location.host + '/remote' + window.location.hash);
-
     // Initialize remood, register remood events
     r = new remood();
     window.r = r;
     r.getConnectionId(function(id) {
       hash('id', id);
+
+      // Initilize QRCode
+      $('#qr-code').qrcode(window.location.host + '/remote#!&id=' + id);
     });
 
     r.on('play', function(msg) {
@@ -28,7 +28,12 @@
     r.on({
       eventType: 'sc url',
       callback: function(msg) {
-        widget.load(msg.data);
+        widget.load(msg.data, { callback: function() {
+          console.log('player ready');
+          r.send({
+            id: 'player-ready',
+          });
+        }});
       }
     });
 

@@ -3,6 +3,10 @@
   $(function() {
     var r = new remood();
 
+    r.on('player-ready', function(msg) {
+      $('#play').trigger('click');
+    });
+
     // Bind remood events
     $('#play').connect('click', function() {
       $('#play, #pause').toggleClass('hidden');
@@ -43,7 +47,6 @@
               $(this).addClass('playing');
               $(this).append('<span class="glyphicon glyphicon-play play"></span>');
 
-              //$('#play').trigger('click');
               $('#player').fadeIn('slow');
             });
             $searchResults.fadeIn('slow');
