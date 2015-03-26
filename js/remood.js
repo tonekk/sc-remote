@@ -13,7 +13,8 @@
     // Initial handshake to establish connection
     this.socket.on('remood', function(data) {
 
-      var msg = JSON.parse(data);
+      // FIME: Consistent msg type
+      var msg = _.isObject(data) ? data : JSON.parse(data);
 
       _.each(self.findFunctionsFor(msg), function(func) {
         func(msg);
@@ -56,7 +57,7 @@
              (item.eventType ? item.eventType == msg.type : true);
     });
 
-    return _.map(matches, function(m) { return m.callback });
+    return _.pluck(matches, 'callback');
   };
 
   remood.prototype.on = function(id, callback) {

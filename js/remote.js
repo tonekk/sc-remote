@@ -4,7 +4,7 @@
     var r = new remood();
 
     r.on('player-ready', function(msg) {
-      $('#play').trigger('click');
+      $('#play').click();
     });
 
     // Bind remood events
