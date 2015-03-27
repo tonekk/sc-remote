@@ -2,6 +2,7 @@ var express = require('express'),
     app = express(),
     server = require('http').createServer(app),
     io = require('socket.io')(server),
+    blade = require('blade'),
     MobileDetect = require('mobile-detect'),
     RemoodConnection = require('./remood.connection');
 
@@ -55,6 +56,9 @@ io.on('connection', function(socket) {
 
   socket.emit('remood-auth');
 });
+
+// Blade middleware
+app.use(blade.middleware(__dirname + '/blade') );
 
 server.listen(process.env.PORT || 1337);
 console.log('Listening on port ' + (process.env.PORT || 1337) + '...');

@@ -1,0 +1,8 @@
+li.wrapper
+    .left-col
+        img(src="#{result.artwork_url}")
+    .right-col
+        h1 #{result.title}
+        h4
+            small by
+            | #{' ' + result.user.username}

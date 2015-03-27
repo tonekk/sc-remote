@@ -36,19 +36,25 @@
             $('#search-results > ul').html('');
 
             $.each(results, function(i, result) {
-              if (i > 15) return;
-              $('#search-results > ul').append(
-                '<li data-remood-value="' + result.uri + '">' + result.title + '</li>');
+              if (i > 25) return;
+              blade.Runtime.loadTemplate("search-item.blade", function(err, tmpl) {
+                tmpl({"result": result}, function(err, html) {
+                  $html = $($.parseHTML(html));
+
+                  $html
+                  .appendTo('#search-results > ul')
+                  .connect('click', 'sc url', function() {
+                    $('#search-results li').removeClass('playing');
+                    $('span.play').remove();
+                    $(this).addClass('playing');
+                    $(this).append('<span class="glyphicon glyphicon-play play"></span>');
+
+                    $('#player').fadeIn('slow');
+                  });
+                });
+              });
             });
 
-            $('#search-results li').connect('click', 'sc url', function() {
-              $('#search-results li').removeClass('playing');
-              $('span.play').remove();
-              $(this).addClass('playing');
-              $(this).append('<span class="glyphicon glyphicon-play play"></span>');
-
-              $('#player').fadeIn('slow');
-            });
             $searchResults.fadeIn('slow');
           });
         }
