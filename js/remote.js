@@ -7,6 +7,12 @@
       $('#play').click();
     });
 
+    r.on('player-finished', function(msg) {
+      $('#search-results li.playing')
+        .next()
+        .click();
+    });
+
     // Bind remood events
     $('#play').connect('click', function() {
       $('#play, #pause').toggleClass('hidden');
