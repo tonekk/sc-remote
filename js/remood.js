@@ -13,7 +13,8 @@
     // Initial handshake to establish connection
     this.socket.on('remood', function(data) {
 
-      var msg = JSON.parse(data);
+      // FIME: Consistent msg type
+      var msg = _.isObject(data) ? data : JSON.parse(data);
 
       _.each(self.findFunctionsFor(msg), function(func) {
         func(msg);
@@ -29,6 +30,8 @@
       } else {
         if (hash('id')) {
           connectionId = hash('id');
+        } else {
+          return this.emit('remood-auth', { type: window.remoodType });
         }
 
         this.emit('remood-auth', { type: window.remoodType, id: connectionId });
@@ -54,7 +57,7 @@
              (item.eventType ? item.eventType == msg.type : true);
     });
 
-    return _.map(matches, function(m) { return m.callback });
+    return _.pluck(matches, 'callback');
   };
 
   remood.prototype.on = function(id, callback) {
@@ -68,8 +71,8 @@
     }
   };
 
-  remood.prototype.send = function(value, type, id) {
-    this.socket.emit('remood', { type: 'direct', data: value, id: id });
+  remood.prototype.send = function(msg) {
+    this.socket.emit('remood', msg);
   };
 
   // Connect a jQuery event to a remood event
