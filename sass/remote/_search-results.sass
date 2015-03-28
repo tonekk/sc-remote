@@ -1,0 +1,33 @@
+#search-results
+
+  margin-top: 20px
+
+  ul
+    padding: 0
+    list-style-type: none
+    max-width: 100%
+
+    li
+      padding: 10px
+      text-overflow: ellipsis
+      overflow: hidden
+      max-width: 100%
+      cursor: pointer
+      transition: padding .3s ease
+
+      &:hover
+        text-decoration: underline
+
+      &.playing
+        padding: 25px
+
+      span.play
+        float: left
+        font-size: 18px
+
+    li:nth-child(odd)
+      background: #f70
+      color: white
+
+    li:nth-child(even)
+      color: #f70
