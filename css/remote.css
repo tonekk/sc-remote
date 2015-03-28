@@ -1,16 +1,12 @@
-.container {
+html .container {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
   width: 98%;
   max-width: 1200px;
-  margin: 0 auto; }
-  .container > * {
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-        -ms-flex: 1;
-            flex: 1; }
+  margin: 0 auto;
+  padding: 0 2em; }
 
 .flex-1 {
   -webkit-box-flex: 1;
@@ -103,9 +99,8 @@ main.content {
   display: inline-block;
   vertical-align: middle;
   text-align: center;
-  padding: 20px;
   overflow: hidden;
-  max-width: 100%; }
+  width: 100%; }
 
 img, video {
   display: inline-block;
@@ -122,32 +117,72 @@ button {
 button:focus {
   outline: none; }
 
-input.form-control:focus {
+html body {
+  font-size: 0.6em !important; }
+  html body h1 {
+    font-size: 3.5em; }
+  @media screen and (min-width: 500px) {
+    html body {
+      font-size: 0.8em !important; } }
+  @media screen and (min-width: 800px) {
+    html body {
+      font-size: 1em !important; } }
+
+#searcher.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  padding: 1em;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.96); }
+  #searcher.fixed input {
+    border-color: transparent;
+    box-shadow: none; }
+#searcher input.form-control:focus {
   border-color: #f70;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #f70;
   outline: 0 none; }
-
-#search {
+#searcher #search {
   background: #f70;
   border-color: #f70;
   color: white; }
 
 #player {
-  margin-top: 20px;
-  opacity: 0;
-  -webkit-transition: .5s opacity;
-          transition: .5s opacity; }
-  #player.playing {
-    opacity: 1; }
+  z-index: 999;
+  position: fixed;
+  bottom: -10em;
+  left: 0;
+  right: 0;
+  padding: 1em 2em;
+  -webkit-transition: 1s bottom ease;
+          transition: 1s bottom ease;
+  box-shadow: 0 -3px 10px 0 rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.96);
+  font-size: 2em; }
+  @media screen and (min-width: 500px) {
+    #player {
+      font-size: 1.5em !important; } }
+  @media screen and (min-width: 800px) {
+    #player {
+      font-size: 1em !important; } }
+  #player.playing, #player.connected {
+    bottom: 0; }
+    #player.playing button, #player.connected button {
+      min-height: 2.5em;
+      width: 100%; }
+    #player.playing input[type=range], #player.connected input[type=range] {
+      margin: 1.5em 0 0 0; }
 
 #search-results {
   margin-top: 20px; }
   #search-results ul {
-    padding: 0;
+    padding: 3em 0 10em;
     list-style-type: none;
     max-width: 100%; }
     #search-results ul li {
-      padding: 10px;
+      padding: 1em;
       text-overflow: ellipsis;
       overflow: hidden;
       max-width: 100%;
@@ -159,12 +194,44 @@ input.form-control:focus {
         #search-results ul li:hover a.play-button span {
           opacity: 1; }
       #search-results ul li.playing {
-        padding: 4em; }
+        padding: 4em 1em; }
         #search-results ul li.playing a.play-button span {
           opacity: 1;
           color: #f70;
           border-color: #f70;
           background: rgba(255, 255, 255, 0.7); }
+      #search-results ul li .left-col {
+        -webkit-box-flex: 4;
+        -webkit-flex: 4;
+            -ms-flex: 4;
+                flex: 4; }
+        @media screen and (orientation: landscape) and (max-height: 400px) {
+          #search-results ul li .left-col {
+            display: none; } }
+        @media screen and (min-width: 500px) {
+          #search-results ul li .left-col {
+            -webkit-box-flex: 3;
+            -webkit-flex: 3;
+                -ms-flex: 3;
+                    flex: 3; } }
+        @media screen and (min-width: 750px) {
+          #search-results ul li .left-col {
+            -webkit-box-flex: 2;
+            -webkit-flex: 2;
+                -ms-flex: 2;
+                    flex: 2; } }
+      #search-results ul li .right-col {
+        -webkit-box-flex: 10;
+        -webkit-flex: 10;
+            -ms-flex: 10;
+                flex: 10;
+        padding: 0 1em; }
+        @media screen and (orientation: landscape) and (max-height: 400px) {
+          #search-results ul li .right-col {
+            text-align: left; }
+            #search-results ul li .right-col h1, #search-results ul li .right-col h4 {
+              display: inline-block;
+              padding-right: 0.3em; } }
       #search-results ul li figure {
         white-space: nowrap; }
         #search-results ul li figure:before {
