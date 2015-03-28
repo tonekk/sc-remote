@@ -2,9 +2,10 @@
 
   var socket = io();
 
-  remood = function() {
+  remood = function(options) {
 
     var connectionIdDeferred = $.Deferred(),
+        remoodType = (options && options.remote ? 'remote' : 'receiver'),
         connectionId,
         self = this;
 
@@ -27,10 +28,10 @@
         if (hash('id')) {
           connectionId = hash('id');
         } else {
-          return this.emit('remood-auth', { type: window.remoodType });
+          return this.emit('remood-auth', { type: remoodType });
         }
 
-        this.emit('remood-auth', { type: window.remoodType, id: connectionId });
+        this.emit('remood-auth', { type: remoodType, id: connectionId });
       }
 
       hash('id', connectionId);

@@ -1,50 +1,57 @@
 var randomstring = require('randomstring'),
-    connections = [];
+    pluralize = require('pluralize'),
+    connections = [],
+    _ = require('lodash');
 
-RemoodConnection = function(socket, type) {
+RemoodConnection = function(socket, type, identifier) {
 
-  var id = randomstring.generate(8),
+  var id = identifier || randomstring.generate(8),
       self = this,
-      receiverSocket,
-      remoteSocket;
+      receiverSockets = [],
+      remoteSockets = [];
 
   // Getters
   this.id = function() {
     return id;
   };
-  this.receiverSocket = function() {
-    return receiverSocket;
+  this.receiverSockets = function() {
+    return receiverSockets;
   };
-  this.remoteSocket = function() {
-    return remoteSocket;
-  };
-
-  var bindEvents = function() {
-    receiverSocket.on('remood', function(msg) {
-      console.log('RemoodConnection with id', self.id(), 'receiver -> remote:', msg);
-      remoteSocket.emit('remood', msg);
-    });
-
-    remoteSocket.on('remood', function(msg) {
-      console.log('RemoodConnection with id', self.id(), 'remote -> receiver:', msg);
-      receiverSocket.emit('remood', msg);
-    });
+  this.remoteSockets = function() {
+    return remoteSockets;
   };
 
   // Setters
-  this.setRemoteSocket = function(socket) {
-    remoteSocket = socket;
+  var bindEvents = function(socket, targetSockets, type) {
+    socket
+      .on('remood', function(msg) {
+        console.log('RemoodConnection with id', self.id(), 'receiver -> remote:', msg);
+        _.each(targetSockets, function(targetSocket) {
+          targetSocket.emit('remood', msg);
+        });
+      })
+      .on('disconnect', function(msg) {
+        console.log('- Socket (' + type + ') disconnected from id: ' + self.id());
+        var sockets = (type == 'remote' ? remoteSockets : receiverSockets);
+        _.remove(sockets, function(sock) {
+          return sock == socket;
+        });
+        console.log(self.statusString(false));
 
-    if (receiverSocket) {
-      bindEvents();
-    }
+        if (!receiverSockets.length && !remoteSockets.length) {
+          console.log('- Connection has no sockets left. Destroying');
+          RemoodConnection.destroy(self.id());
+        }
+      });
+  };
+
+  this.setRemoteSocket = function(socket) {
+    remoteSockets.push(socket);
+    bindEvents(socket, receiverSockets, 'remote');
   };
   this.setReceiverSocket = function(socket) {
-    receiverSocket = socket;
-
-    if (remoteSocket) {
-      bindEvents();
-    }
+    receiverSockets.push(socket);
+    bindEvents(socket, remoteSockets, 'receiver');
   };
   this.setSocketForType = function(socket, type) {
     if (type == 'remote') {
@@ -52,6 +59,22 @@ RemoodConnection = function(socket, type) {
     } else {
       this.setReceiverSocket(socket);
     }
+  };
+
+  this.statusString = function(connected) {
+    var receiverCount = receiverSockets.length,
+        remoteCount = remoteSockets.length;
+
+    return [
+      (connected ? '+' : '-'),
+      ' Connection has (',
+      receiverCount,
+      ') ',
+      pluralize('receiver', receiverCount),
+      ' and (', remoteCount,
+      ') ',
+      pluralize('remotes', remoteCount)
+    ].join('');
   };
 
   // Initialize
@@ -70,5 +93,12 @@ RemoodConnection.find = function(id) {
     }
   }
 };
+
+RemoodConnection.destroy = function(id) {
+  _.remove(connections, function(connection) {
+    return connection.id == id;
+  });
+};
+
 
 module.exports = RemoodConnection;
