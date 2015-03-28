@@ -1,12 +1,11 @@
-.container
+html .container //enforced because of bootstrap
   display: flex
   width: 98%
   max-width: 1200px
   margin: 0 auto
 
-  > *
-    flex: 1
-
+  // reset bootstrap
+  padding: 0 2em
 
 @for $i from 1 through 12
   .flex-#{$i}

@@ -6,7 +6,7 @@ html
     meta(content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no', name='viewport')
 
     title Remote
-    link(href='remote.css', rel='stylesheet')
+    link(href="remote.css?ts=#{Date.now()}", rel='stylesheet')
     link(href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css', rel='stylesheet')
   body
     main.content
@@ -15,18 +15,22 @@ html
         .row
           .col-xs-12
             .input-group
+              input#search-term.form-control(placeholder='Search for...', type='text')
               span.input-group-btn
                 button#search.btn.btn-default(type='button') Go
-              input#search-term.form-control(placeholder='Search for...', type='text')
 
-      #player.row
-        .col-xs-4
-          button#left.glyphicon.glyphicon-fast-backward
-        .col-xs-4
-          button#play.glyphicon.glyphicon-play
-          button#pause.glyphicon.glyphicon-pause.hidden
-        .col-xs-4
-          button#right.glyphicon.glyphicon-fast-forward
+      #player
+        .row
+          .col-xs-4
+            button#left.glyphicon.glyphicon-fast-backward
+          .col-xs-4
+            button#play.glyphicon.glyphicon-play
+            button#pause.glyphicon.glyphicon-pause.hidden
+          .col-xs-4
+            button#right.glyphicon.glyphicon-fast-forward
+        .row
+          .col-xs-12
+            input#volume(type="range",min=0,max=100,value=50)
 
       #search-results.row
         ul
