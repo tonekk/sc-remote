@@ -32,6 +32,10 @@
         $searchTerm = $('#search-term'),
         $searchResults = $('#search-results');
 
+
+    // Enable play controls per default until we have a event for this.
+    $('#player').addClass('playing');
+
     $search.click(function() {
 
       $('#searcher').addClass('fixed');
