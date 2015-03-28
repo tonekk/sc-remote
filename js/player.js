@@ -18,9 +18,13 @@
 
     r.getConnectionId(function(id) {
       hash('id', id);
+      var remoteUrl = window.location.host + '/remote#!&id=' + id;
 
       // Initilize QRCode
-      $('#qr-code').qrcode(window.location.host + '/remote#!&id=' + id);
+      $('#qr-code')
+        .qrcode(remoteUrl)
+        .wrap('<a href="' + remoteUrl + '" target="_blank"/>');
+
     });
 
     r.on('play', function(msg) {
