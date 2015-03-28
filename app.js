@@ -15,11 +15,15 @@ app.get('/', function(req, res) {
 });
 
 app.get('/player', function(req, res) {
-  res.sendFile('html/player.html', { root: __dirname });
+  blade.renderFile('blade/player.blade', {}, function(err, html) {
+    res.send(html);
+  });
 });
 
 app.get('/remote', function(req, res) {
-  res.sendFile('html/remote.html', { root: __dirname });
+  blade.renderFile('blade/remote.blade', {}, function(err, html) {
+    res.send(html);
+  });
 });
 
 app.use(express.static(__dirname + '/css'));
