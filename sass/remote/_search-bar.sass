@@ -1,16 +1,26 @@
-button
-  border: none
-  background: transparent
+#searcher
+  &.fixed
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    z-index: 999
 
-button:focus
-  outline: none
+    padding: 1em
 
-input.form-control:focus
-  border-color: #f70
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #f70
-  outline: 0 none
+    box-shadow: 0 3px 10px 0 rgba(0,0,0,.2)
+    background: rgba(255,255,255,.96)
 
-#search
-  background: #f70
-  border-color: #f70
-  color: white
+    input
+      border-color: transparent
+      box-shadow: none
+
+  input.form-control:focus
+    border-color: #f70
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #f70
+    outline: 0 none
+
+  #search
+    background: #f70
+    border-color: #f70
+    color: white

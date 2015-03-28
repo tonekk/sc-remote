@@ -20,9 +20,12 @@
     $('#pause').connect('click', function() {
       $('#play, #pause').toggleClass('hidden');
     });
+    $('#volume').connect('input', function() {
+      console.log('set volume to ' + $(this).val());
+    });
 
     SC.initialize({
-      client_id: "cab916b4c90374ba818ddd060c356f36",
+      client_id: "cab916b4c90374ba818ddd060c356f36"
     });
 
     var $search = $('#search'),
@@ -30,6 +33,8 @@
         $searchResults = $('#search-results');
 
     $search.click(function() {
+
+      $('#searcher').addClass('fixed');
 
       hash('term', $searchTerm.val());
 
