@@ -31,8 +31,8 @@ io.on('connection', function(socket) {
   // Handshake
   socket.on('remood-auth', function(msg) {
 
-    var createConnection = function() {
-      var con = new RemoodConnection(socket, msg.type);
+    var createConnection = function(id) {
+      var con = new RemoodConnection(socket, msg.type, id);
       console.log('+ Created new connection with id:', con.id());
       socket.emit('remood-auth', { id: con.id() });
     };
@@ -43,10 +43,11 @@ io.on('connection', function(socket) {
       con = RemoodConnection.find(msg.id)
       if (con) {
         con.setSocketForType(socket, msg.type);
-        console.log('+ Successfully connected to connection with id: ', msg.id);
+        console.log('+ Successfully connected to connection with id:', msg.id);
+        console.log(con.statusString(true));
       } else {
         console.log('- No conection found for given id, creating new one');
-        createConnection();
+        createConnection(msg.id);
       }
     } else {
       createConnection();
