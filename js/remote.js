@@ -45,11 +45,7 @@
                   .appendTo('#search-results > ul')
                   .connect('click', 'sc url', function() {
                     $('#search-results li').removeClass('playing');
-                    $('span.play').remove();
-                    $(this).addClass('playing');
-                    $(this).append('<span class="glyphicon glyphicon-play play"></span>');
-
-                    $('#player').fadeIn('slow');
+                    $(this).add('#player').addClass('playing');
                   });
                 });
               });
