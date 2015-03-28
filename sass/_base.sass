@@ -20,7 +20,7 @@ main.content
   text-align: center
   padding: 20px
   overflow: hidden
-  max-width: 100%
+  width: 100%
 
 img,
 video
@@ -28,3 +28,28 @@ video
 
 figure > img
   display: block
+
+button
+  border: none
+  background: transparent
+
+button:focus
+  outline: none
+
+
+// Mobile font sizes quickfix
+// Replace with https://github.com/STRML/textFit
+html body
+  font-size: 0.6em !important
+
+  h1
+    font-size: 3.5em
+
+  @media screen and (min-width: 500px)
+    &
+      font-size: 0.8em !important
+  @media screen and (min-width: 800px)
+    &
+      font-size: 1em !important
+
+

@@ -6,6 +6,7 @@
 
     // Initialize SC Player
     widget = SC.Widget(document.getElementById('sc-widget'));
+    widget.setVolume(50);
 
     // Initialize remood, register remood events
     r = new remood();
@@ -27,6 +28,10 @@
 
     r.on('pause', function(msg) {
       widget.pause();
+    });
+
+    r.on('volume', function(msg) {
+      widget.setVolume(msg.data / 100);
     });
 
     r.on({
