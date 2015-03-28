@@ -13,12 +13,8 @@
 
     // Initial handshake to establish connection
     this.socket.on('remood', function(data) {
-
-      // FIME: Consistent msg type
-      var msg = _.isObject(data) ? data : JSON.parse(data);
-
-      _.each(self.findFunctionsFor(msg), function(func) {
-        func(msg);
+      _.each(self.findFunctionsFor(data), function(func) {
+        func(data);
       });
     });
 
@@ -80,16 +76,17 @@
   $.fn.extend({
     connect: function(eventType, callback) {
 
-      var self = this,
-          eventName = arguments.length == 3 ? callback : eventType,
+      var eventName = arguments.length == 3 ? callback : eventType,
           cb = arguments.length == 3 ? arguments[2] : callback;
 
-      self.on(eventType, function() {
-        socket.emit('remood', JSON.stringify({
-          id: self.attr('data-remood-id') || self.attr('id'),
+      this.on(eventType, function() {
+        var $this = $(this);
+
+        socket.emit('remood', {
+          id: $this.attr('data-remood-id') || $this.attr('id'),
           type: eventName,
-          data: self.val() || self.attr('data-remood-value')
-        }));
+          data: $this.val() || $this.attr('data-remood-value')
+        });
 
         if (cb && typeof(cb) === 'function') {
           cb.apply(this);

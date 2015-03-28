@@ -1,0 +1,30 @@
+html, body
+  height: 100%
+  text-align: center
+  white-space: nowrap
+  margin: 0
+
+body:before
+  content: ''
+  display: inline-block
+  height: 100%
+  width: 0
+  overflow: hidden
+  vertical-align: middle
+  margin-left: -.3em
+
+
+main.content
+  display: inline-block
+  vertical-align: middle
+  text-align: center
+  padding: 20px
+  overflow: hidden
+  max-width: 100%
+
+img,
+video
+  +responsive-media
+
+figure > img
+  display: block

@@ -1,0 +1,35 @@
+// Maintain an given aspect ratio.
+// To get the expected result replace the colon in the aspect ratio with a slash.
+// e.g. 16:9 will become 16/9
+=box-aspect-ratio($ratio: 2)
+  $gap: 100 / $ratio
+  width: 100%
+  height: 0
+  padding-bottom: #{$gap + "%"}
+
+
+// Cross browser painless responsive media
+=responsive-media($upscaling: false, $force: false)
+  $important: null
+  @if $force
+    $important: !important
+
+  display: inline-block
+  height: auto#{$important}
+
+  @if $upscaling == false
+    max-width: 100%#{$important}
+
+  @if $upscaling
+    width: 100%#{$important}
+    max-width: none#{$important}
+
+// Reset responsive media to normal behavior
+=reset-responsive-media($force: false)
+  $important: null
+  @if $force
+    $important: !important
+
+  height: initial#{$important}
+  width: initial#{$important}
+  max-width: none#{$important}

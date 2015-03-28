@@ -1,0 +1,13 @@
+.container
+  display: flex
+  width: 98%
+  max-width: 1200px
+  margin: 0 auto
+
+  > *
+    flex: 1
+
+
+@for $i from 1 through 12
+  .flex-#{$i}
+    flex: $i

@@ -2,6 +2,7 @@ var express = require('express'),
     app = express(),
     server = require('http').createServer(app),
     io = require('socket.io')(server),
+    blade = require('blade'),
     MobileDetect = require('mobile-detect'),
     RemoodConnection = require('./remood.connection');
 
@@ -14,11 +15,15 @@ app.get('/', function(req, res) {
 });
 
 app.get('/player', function(req, res) {
-  res.sendFile('html/player.html', { root: __dirname });
+  blade.renderFile('blade/player.blade', {}, function(err, html) {
+    res.send(html);
+  });
 });
 
 app.get('/remote', function(req, res) {
-  res.sendFile('html/remote.html', { root: __dirname });
+  blade.renderFile('blade/remote.blade', {}, function(err, html) {
+    res.send(html);
+  });
 });
 
 app.use(express.static(__dirname + '/css'));
@@ -56,6 +61,9 @@ io.on('connection', function(socket) {
 
   socket.emit('remood-auth');
 });
+
+// Blade middleware
+app.use(blade.middleware(__dirname + '/blade') );
 
 server.listen(process.env.PORT || 1337);
 console.log('Listening on port ' + (process.env.PORT || 1337) + '...');

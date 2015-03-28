@@ -1,0 +1,72 @@
+#search-results
+
+  margin-top: 20px
+
+  ul
+    padding: 0
+    list-style-type: none
+    max-width: 100%
+
+    li
+      padding: 10px
+      text-overflow: ellipsis
+      overflow: hidden
+      max-width: 100%
+      cursor: pointer
+      transition: padding .3s ease
+
+      &:hover
+        text-decoration: underline
+        a.play-button span
+          opacity: 1
+
+      &.playing
+        padding: 4em
+
+        a.play-button span
+          opacity: 1
+          color: #f70
+          border-color: #f70
+          background: rgba(255,255,255,.7)
+
+      // Albumcover - center play button vertically and horizontally above albumcover
+      figure
+        white-space: nowrap
+
+        &:before
+          content: ''
+          display: inline-block
+          height: 100%
+          width: 0
+
+        > *
+          display: inline-block
+          white-space: normal
+          vertical-align: middle
+
+          width: 100%
+          margin-left: -100%
+          &:first-child
+            margin-left: 0
+
+        // Play button on albumcover
+        a.play-button
+          span
+            padding: .8em
+
+            border: 0.15em solid white
+            border-radius: 100%
+            background: rgba(255,255,255,.3)
+
+            opacity: .7
+            color: white
+            font-size: 2em
+
+            transition: all .3s ease
+
+    li:nth-child(odd)
+      background: #f70
+      color: white
+
+    li:nth-child(even)
+      color: #f70
