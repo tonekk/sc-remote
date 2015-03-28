@@ -10,6 +10,12 @@
     // Initialize remood, register remood events
     r = new remood();
 
+    widget.bind(SC.Widget.Events.FINISH, function() {
+      r.send({
+        id: 'player-finished'
+      });
+    });
+
     r.getConnectionId(function(id) {
       hash('id', id);
 
@@ -31,7 +37,7 @@
         widget.load(msg.data, { callback: function() {
           console.log('player ready');
           r.send({
-            id: 'player-ready',
+            id: 'player-ready'
           });
         }});
       }
