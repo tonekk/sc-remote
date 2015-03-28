@@ -1,7 +1,7 @@
 (function($, io) {
 
   $(function() {
-    var r = new remood();
+    var r = new remood({ remote: true });
 
     r.on('player-ready', function(msg) {
       $('#play').click();
