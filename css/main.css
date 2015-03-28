@@ -1,0 +1,70 @@
+html, body {
+  height: 100%;
+  text-align: center;
+  white-space: nowrap;
+  margin: 0; }
+
+main.content {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  padding: 20px;
+  overflow: hidden;
+  max-width: 100%; }
+
+body:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  width: 0;
+  overflow: hidden;
+  vertical-align: middle;
+  margin-left: -.3em; }
+
+button {
+  border: none;
+  background: transparent; }
+
+button:focus {
+  outline: none; }
+
+input.form-control:focus {
+  border-color: #f70;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px #f70;
+  outline: 0 none; }
+
+#search {
+  background: #f70;
+  border-color: #f70;
+  color: white; }
+
+#player {
+  display: none;
+  margin-top: 20px; }
+
+#search-results {
+  margin-top: 20px; }
+  #search-results ul {
+    padding: 0;
+    list-style-type: none;
+    max-width: 100%; }
+    #search-results ul li {
+      padding: 10px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 100%;
+      cursor: pointer;
+      -webkit-transition: padding .3s ease;
+              transition: padding .3s ease; }
+      #search-results ul li:hover {
+        text-decoration: underline; }
+      #search-results ul li.playing {
+        padding: 25px; }
+      #search-results ul li span.play {
+        float: left;
+        font-size: 18px; }
+    #search-results ul li:nth-child(odd) {
+      background: #f70;
+      color: white; }
+    #search-results ul li:nth-child(even) {
+      color: #f70; }
