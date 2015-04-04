@@ -18,8 +18,10 @@
     });
 
     r.getConnectionId(function(id) {
+      var remoteUrl;
+
       hash('id', id);
-      var remoteUrl = window.location.host + '/remote#!&id=' + id;
+      remoteUrl = window.location.origin + '/remote' + window.location.hash;
 
       // Initilize QRCode
       $('#qr-code')
