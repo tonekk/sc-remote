@@ -1,16 +1,15 @@
 {
-  "name": "remood.server.js",
-  "version": "0.0.1",
-  "description": "Server for remood.js",
+  "name": "sc-remote",
+  "version": "0.3.0",
+  "description": "Open a page on your multi-media system and controll it per smartphone",
   "main": "app.js",
   "scripts": {
-    "postinstall": "gulp build",
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "p"
+    "url": "https://github.com/h-w-z/sc-remote.git"
   },
   "author": "",
   "license": "ISC",
