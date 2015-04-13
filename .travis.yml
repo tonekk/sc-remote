@@ -1,0 +1,11 @@
+deploy:
+  provider: cloudcontrol
+  email: stephanschndr@gmail.com
+  password:
+    secure: mG+OQSmhEDqlQPjZkyjd6k2E890AMfn0Vab3uknk7DpnbOgS/TUXIHIWpG/+XAuXNtC/hpgAUTNtZ6Ij6DEkX5WUj5gGVwQeDV+fD9b78XG/0frwAD/PFfSSTv5OIZID/onBiUMe2LBFgmUzOqmDYoLutFS4eM/VafhVR6fnGGg=
+  script: node ./node_modules/gulp/bin/gulp.js build
+  deployment: scremote/production
+  skip_cleanup: true
+  on:
+    repo: h-w-z/sc-remote
+    branch: production

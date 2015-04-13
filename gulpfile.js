@@ -27,12 +27,19 @@ gulp.task('develop', function () {
   })
 });
 
-gulp.task('clean', function(done) {
-  del(['./css/*.css', './html/*.html'], done);
-});
-
 gulp.task('watch', function() {
   gulp.watch('./sass/**/*.sass', ['sass']);
 });
 
-gulp.task('default', ['sass', 'watch', 'develop']);
+gulp.task('clean', function(done) {
+  del(['./css/*.css', './html/*.html'], done);
+});
+
+
+gulp.task('default',
+  ['sass', 'watch', 'develop']
+);
+
+gulp.task('build',
+  ['clean', 'sass']
+);
