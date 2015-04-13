@@ -27,7 +27,7 @@ gulp.task('build:js', function() {
 
   js = gulp.src(['./js/*.js'])
     .pipe(gulp.dest('./dist/js/'));
-  app = gulp.src(['./app.js'])
+  app = gulp.src(['./app.js', './remood.connection.js'])
     .pipe(gulp.dest('./dist/'));
 
   return merge(js, app);
