@@ -45,7 +45,7 @@ io.on('connection', function(socket) {
     console.log('+ Socket is a ' + msg.type);
 
     if (msg.id) {
-      con = RemoodConnection.find(msg.id)
+      con = RemoodConnection.find(msg.id);
       if (con) {
         con.setSocketForType(socket, msg.type);
         console.log('+ Successfully connected to connection with id:', msg.id);

@@ -69,7 +69,7 @@
             $searchResults.fadeIn('slow');
           });
         }
-      })
+      });
     });
 
     $searchTerm.keydown(function(e) {
