@@ -1,5 +1,5 @@
 language: node_js
-script: node ./node_modules/gulp/bin/gulp.js build
+before_deploy: node ./node_modules/gulp/bin/gulp.js build
 deploy:
   provider: cloudcontrol
   email: stephanschndr@gmail.com
