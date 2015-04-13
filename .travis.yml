@@ -1,4 +1,5 @@
 language: node_js
+script: echo "We should really think about some tests!"
 before_deploy: node ./node_modules/gulp/bin/gulp.js build
 deploy:
   provider: cloudcontrol
