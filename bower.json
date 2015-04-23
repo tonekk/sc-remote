@@ -1,0 +1,16 @@
+{
+  "name": "sc-remote",
+  "version": "0.0.0",
+  "homepage": "https://github.com/h-w-z/sc-remote",
+  "authors": [
+    "HWZ"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jquery.qrcode": "~0.11.0",
+    "hash.js": "~1.0.0",
+    "lodash": "~3.7.0",
+    "jquery": "~2.1.3",
+    "socket.io-client": "~1.3.5"
+  }
+}

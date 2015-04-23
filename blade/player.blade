@@ -22,11 +22,17 @@ html
         | Scan it with your smartphone to connect:
       #qr-code
 
-    script(src='//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js')
-    script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js')
-    script(src='//cdnjs.cloudflare.com/ajax/libs/lodash.js/3.5.0/lodash.min.js')
-    script(src='//cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js')
+    // Libraries
+    // @todo replace with automatic gulp minification
+    script(src='libraries/socket.io-client/socket.io.js')
+    script(src='libraries/lodash/lodash.min.js')
+    script(src='libraries/jquery/dist/jquery.min.js')
+    script(src='libraries/jquery.qrcode/dist/jquery.qrcode.min.js')
+    script(src='libraries/hash.js/hash.min.js')
+
+    // External scripts
     script(src='//w.soundcloud.com/player/api.js')
-    script(src='//cdn.rawgit.com/tonekk/hash.js/master/hash.min.js')
+
+    // App files
     script(src='remood.js')
     script(src='player.js')
