@@ -59,7 +59,8 @@
                   $html
                   .appendTo('#search-results > ul')
                   .connect('click', 'sc url', function() {
-                    $('#search-results li').removeClass('playing');
+                    $('#search-results li, .play-control').removeClass('playing');
+                    $('.play-control', this).addClass('playing');
                     $(this).add('#player').addClass('playing');
                   });
                 });

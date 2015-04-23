@@ -1,10 +1,11 @@
-li.wrapper(data-remood-value=result.uri)
+li.wrapper.search-item(data-remood-value=result.uri)
   .container
     .left-col
       figure
-        img(src="#{result.artwork_url.replace(/-large\.jpg$/,'-t500x500.jpg')}")
-        a.play-button
-          span.glyphicon.glyphicon-play
+        .layer
+          img(src="#{result.artwork_url.replace(/-large\.jpg$/,'-t500x500.jpg')}")
+        .layer
+          i.play-control
     .right-col
       h1 #{result.title}
       h4
