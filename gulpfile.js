@@ -6,7 +6,8 @@ var gulp = require('gulp'),
     del = require('del'),
     merge = require('merge-stream'),
     nodemon = require('nodemon')
-    sourcemaps = require('gulp-sourcemaps');
+    sourcemaps = require('gulp-sourcemaps'),
+    bower = require('gulp-bower');
 
 gulp.task('sass', function () {
   return cssBundler('./css');
@@ -20,6 +21,15 @@ gulp.task('clean', function(done) {
 });
 gulp.task('build:clean', function(done) {
   del(['./dist/*', '!./dist/.keep'], done);
+});
+
+gulp.task('bower', function() {
+  return bower()
+    .pipe(gulp.dest('./libraries/'));
+});
+gulp.task('build:bower', function() {
+  return bower()
+    .pipe(gulp.dest('./dist/libraries/'));
 });
 
 gulp.task('build:js', function() {
@@ -54,10 +64,10 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default',
-  ['sass', 'watch', 'develop']
+  ['sass', 'bower', 'watch', 'develop']
 );
 gulp.task('build',
-  ['build:clean', 'build:sass', 'build:js', 'build:templates']
+  ['build:clean', 'build:sass', 'build:js', 'build:templates', 'build:bower']
 );
 
 
