@@ -1,5 +1,5 @@
-li.wrapper.search-item(data-remood-value=result.uri)
-  .container
+li.wrapper
+  .search-item(data-remood-value=result.uri)
     .left-col
       figure
         .layer
@@ -7,7 +7,7 @@ li.wrapper.search-item(data-remood-value=result.uri)
         .layer
           i.play-control
     .right-col
-      h1 #{result.title}
-      h4
+      h2 #{result.title}
+      h3
         small by
         | #{' ' + result.user.username}

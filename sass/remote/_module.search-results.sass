@@ -1,9 +1,7 @@
-#search-results
-
-  margin-top: 20px
-
+.search-results
   ul
-    padding: 3em 0 10em
+    padding: 0
+    margin: 0
     list-style-type: none
     max-width: 100%
 
@@ -26,6 +24,8 @@
         text-decoration: underline
 
 .search-item
+  display: flex
+
   .left-col
     flex: 4
     @media screen and (orientation: landscape) and (max-height: 400px)
@@ -46,19 +46,25 @@
 
   // Albumcover - center play button vertically and horizontally above albumcover
   figure
+    text-align: center
     white-space: nowrap
+    height: 100%
+    margin: 0
+    padding: 0
 
-    &:before
-      content: ''
-      display: inline-block
-      height: 100%
-      width: 0
-
+    &:before,
     > div.layer
       display: inline-block
       white-space: normal
       vertical-align: middle
 
+    &:before
+      content: ''
+      height: 100%
+      width: 0
+
+
+    > div.layer
       // Place elements above each other
       width: 100%
       margin-left: -100%

@@ -1,0 +1,66 @@
+html, body
+  height: 100%
+  margin: 0
+
+// Startscreen
+body.startscreen
+
+  header
+    top: 50%
+    margin-top: -$remote-header-height / 2
+    font-size: 2em
+
+  footer
+    bottom: -$remote-footer-height
+
+main.content
+  padding: $remote-header-height 0 $remote-footer-height
+
+header
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  z-index: 999
+
+  min-height: $remote-header-height
+  box-sizing: border-box
+
+  margin-top: 0
+  padding: 0 2em
+
+  transition: 1s all ease
+
+  input
+    border-color: transparent
+
+    &:focus
+      outline: none
+
+  body:not(.startscreen) &
+    box-shadow: 0 3px 10px 0 rgba(0,0,0,.2)
+    background: rgba(255,255,255,.96)
+
+footer
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+
+  box-sizing: border-box
+  position: fixed
+  bottom: 0
+  left: 0
+  right: 0
+  z-index: 999
+
+  min-height: $remote-footer-height
+
+  padding: 3vh 10vw 2vh
+
+  transition: 1s bottom ease
+
+  box-shadow: 0 -3px 10px 0 rgba(0,0,0,.2)
+  background: rgba(255,255,255,.96)
+
+  > div
+    flex: 0 auto

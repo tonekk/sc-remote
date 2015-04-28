@@ -7,33 +7,25 @@ html
 
     title Remote
     link(href="remote.css?ts=#{Date.now()}", rel='stylesheet')
-    link(href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css', rel='stylesheet')
-  body
+  body.startscreen
+    header
+      .search-bar
+        input#search-term(placeholder='Search for title on soundcloud...', type='text')
+        button.icon.icon-search#search
+
     main.content
-
-      #searcher
-        .row
-          .col-xs-12
-            .input-group
-              input#search-term.form-control(placeholder='Search for...', type='text')
-              span.input-group-btn
-                button#search.btn.btn-default(type='button') Go
-
-      #player
-        .row
-          .col-xs-4
-            button#left.glyphicon.glyphicon-fast-backward
-          .col-xs-4
-            button#play.glyphicon.glyphicon-play
-            button#pause.glyphicon.glyphicon-pause.hidden
-          .col-xs-4
-            button#right.glyphicon.glyphicon-fast-forward
-        .row
-          .col-xs-12
-            input#volume(type="range",min=0,max=100,value=50)
-
-      #search-results.row
+      .search-results
         ul
+
+    footer
+      .player-bar
+        button.icon.icon-previous#left
+        button.icon.icon-play#play
+        button.icon.icon-pause#pause
+        button.icon.icon-next#right
+
+      .volume-bar
+        input#volume(type="range",min=0,max=100,value=50)
 
     // Libraries
     // @todo replace with automatic gulp minification

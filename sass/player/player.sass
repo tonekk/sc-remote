@@ -1,22 +1,61 @@
 @import ../config
 
+html, body
+  width: 100%
+  height: 100%
+
 body
   font-family: 'Poiret One', cursive!important
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+
+.wrapper
+  position: relative
+  width: 90vw
+
+  @media screen and (min-width: 700px)
+    width: 75vw
+
+  @media screen and (min-width: 1000px)
+    width: 60vw
+
+  &:before
+    content: ''
+    display: block
+    +box-aspect-ratio(1)
 
 main.content
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+
   background: #f70
   border-radius: 50%
-  height: 720px
-  width: 720px
+
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
 
   h1.heading
-    margin-top: 80px
-    margin-bottom: 40px
+    margin-top: 4vh
+    margin-bottom: 1vh
     color: white
+    font-size: 1.3em
+
+    @media screen and (min-width: 400px)
+      font-size: 1.5em
+
+    @media screen and (min-width: 700px)
+      font-size: 2em
 
   iframe
-    width: 411px
-    height: 411px
+    width: 60%
+    height: 50%
     border: none
 
 @import qr-code
