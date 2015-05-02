@@ -27,6 +27,7 @@ app.get('/remote', function(req, res) {
 
 app.use(express.static(__dirname + '/css'));
 app.use(express.static(__dirname + '/js'));
+app.use('/libraries',  express.static(__dirname + '/libraries'));
 
 // Blade middleware
 app.use(blade.middleware(__dirname + '/blade') );

@@ -1,4 +1,5 @@
 html/*.html
 css/*.css
 node_modules
+libraries
 .sass-cache

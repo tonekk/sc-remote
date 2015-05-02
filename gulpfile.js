@@ -5,7 +5,8 @@ var gulp = require('gulp'),
     gutil = require('gulp-util'),
     del = require('del'),
     merge = require('merge-stream'),
-    nodemon = require('nodemon');
+    nodemon = require('nodemon')
+    sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('sass', function () {
   return cssBundler('./css');
@@ -61,12 +62,14 @@ gulp.task('build',
 
 
 function cssBundler(dest) {
-  return gulp.src('./sass/**/*.sass')
+return gulp.src('./sass/**/*.sass')
+    .pipe(sourcemaps.init())
     .pipe(sass({
       indentedSyntax: true,
       errLogToConsole: true
     }))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
     .pipe(flatten())
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(dest));
 }

@@ -8,7 +8,7 @@
     });
 
     r.on('player-finished', function(msg) {
-      $('#search-results li.playing')
+      $('.search-results li.playing')
         .next()
         .click();
     });
@@ -30,15 +30,15 @@
 
     var $search = $('#search'),
         $searchTerm = $('#search-term'),
-        $searchResults = $('#search-results');
+        $searchResults = $('.search-results');
 
 
     // Enable play controls per default until we have a event for this.
-    $('#player').addClass('playing');
+    $('body').addClass('playing');
 
-    $search.click(function() {
+    $search.connect('click', function() {
 
-      $('#searcher').addClass('fixed');
+      $('body').removeClass('startscreen');
 
       hash('term', $searchTerm.val());
 
@@ -57,10 +57,12 @@
                   $html = $($.parseHTML(html));
 
                   $html
-                  .appendTo('#search-results > ul')
+                  .appendTo('.search-results > ul')
                   .connect('click', 'sc url', function() {
-                    $('#search-results li').removeClass('playing');
-                    $(this).add('#player').addClass('playing');
+                    $('.search-results li, .play-control').removeClass('playing');
+                    $('.play-control', this).addClass('playing');
+                    $(this).addClass('playing');
+                    $('body').addClass('playing');
                   });
                 });
               });

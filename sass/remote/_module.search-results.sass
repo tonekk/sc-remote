@@ -1,0 +1,131 @@
+.search-results
+  ul
+    padding: 0
+    margin: 0
+    list-style-type: none
+    max-width: 100%
+
+    li
+      padding: 1em
+      text-overflow: ellipsis
+      overflow: hidden
+      max-width: 100%
+      cursor: pointer
+      transition: padding .3s ease
+
+      &:nth-child(odd)
+        background: #f70
+        color: white
+
+      &:nth-child(even)
+        color: #f70
+
+      &:hover
+        text-decoration: underline
+
+.search-item
+  display: flex
+
+  .left-col
+    flex: 4
+    @media screen and (orientation: landscape) and (max-height: 400px)
+      display: none
+    @media screen and (min-width: 500px)
+      flex: 3
+    @media screen and (min-width: 750px)
+      flex: 2
+  .right-col
+    flex: 10
+    padding: 0 1em
+
+    @media screen and (orientation: landscape) and (max-height: 400px)
+      text-align: left
+      h1, h4
+        display: inline-block
+        padding-right: 0.3em
+
+  // Albumcover - center play button vertically and horizontally above albumcover
+  figure
+    text-align: center
+    white-space: nowrap
+    height: 100%
+    margin: 0
+    padding: 0
+
+    &:before,
+    > div.layer
+      display: inline-block
+      white-space: normal
+      vertical-align: middle
+
+    &:before
+      content: ''
+      height: 100%
+      width: 0
+
+
+    > div.layer
+      // Place elements above each other
+      width: 100%
+      margin-left: -100%
+      &:first-child
+        margin-left: 0
+
+    // Play button on albumcover
+    $playWidth: 5vmin
+    $playColor: #fff
+
+    .play-control
+      display: inline-block
+      box-sizing: content-box
+      width: $playWidth
+      height: $playWidth
+
+      padding: $playWidth * 0.5
+      text-align: center
+
+      border: .5vmin solid white
+      border-radius: 100%
+      background: darken(rgba(255, 255, 255, .3), 50)
+      box-shadow: .3vmin .3vmin .75vmin 0px rgba(0, 0, 0, .5)
+
+      opacity: .85
+
+      &:before
+        content: ''
+        display: inline-block
+        box-sizing: content-box
+
+        transition: .5s all ease
+
+        cursor: pointer
+        user-select: none
+
+        border-color: transparent
+        border-left-color: $playColor
+
+        border-style: solid
+
+      // Button states
+      &, // this is also the default state
+      &.paused
+        &:before
+          width: 0
+          height: 0
+
+          border-left-width: $playWidth
+          border-right-width: 0
+          border-bottom-width: $playWidth / 2
+          border-top-width: $playWidth / 2
+
+      &.playing
+        &:before
+          width: $playWidth / 4
+          height: $playWidth
+
+          border-right-color: $playColor
+
+          border-left-width: $playWidth / 3
+          border-right-width: $playWidth / 3
+          border-top-width: 0
+          border-bottom-width: 0

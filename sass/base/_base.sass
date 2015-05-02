@@ -1,0 +1,22 @@
+@import module.icons
+
+// Basic normalize, we should consider using a proper one like normalise.sass
+body
+  font-family: sans-serif
+
+img,
+video
+  +responsive-media
+
+figure
+  width: 100%
+
+  > img
+    display: block
+
+button
+  border: none
+  background: transparent
+
+button:focus
+  outline: none
