@@ -12,7 +12,7 @@ var gulp = require('gulp'),
 gulp.task('sass', function () {
   return cssBundler('./assets/css');
 });
-gulp.task('build:sass', function() {
+gulp.task('build:sass', ['build:bower'], function() {
   return cssBundler('./dist/assets/css');
 });
 
