@@ -10,14 +10,14 @@ var gulp = require('gulp'),
     bower = require('gulp-bower');
 
 gulp.task('sass', function () {
-  return cssBundler('./css');
+  return cssBundler('./assets/css');
 });
 gulp.task('build:sass', function() {
-  return cssBundler('./dist/css');
+  return cssBundler('./dist/assets/css');
 });
 
 gulp.task('clean', function(done) {
-  del(['./css/*.css', './html/*.html'], done);
+  del(['./assets/css/*.css'], done);
 });
 gulp.task('build:clean', function(done) {
   del(['./dist/*', '!./dist/.keep'], done);
@@ -25,28 +25,28 @@ gulp.task('build:clean', function(done) {
 
 gulp.task('bower', function() {
   return bower()
-    .pipe(gulp.dest('./libraries/'));
+    .pipe(gulp.dest('./assets/vendor'));
 });
 gulp.task('build:bower', function() {
   return bower()
-    .pipe(gulp.dest('./dist/libraries/'));
+    .pipe(gulp.dest('./dist/assets/vendor'));
 });
 
 gulp.task('build:js', function() {
   var app,
       js;
 
-  js = gulp.src(['./js/*.js'])
-    .pipe(gulp.dest('./dist/js/'));
-  app = gulp.src(['./app.js', './remood.connection.js'])
-    .pipe(gulp.dest('./dist/'));
+  js = gulp.src(['./assets/js/*.js'])
+    .pipe(gulp.dest('./dist/assets/js'));
+  app = gulp.src(['./app.js'])
+    .pipe(gulp.dest('./dist'));
 
   return merge(js, app);
 });
 
 gulp.task('build:templates', function() {
-  return gulp.src(['./blade/*.blade'])
-    .pipe(gulp.dest('./dist/blade/'));
+  return gulp.src(['./assets/blade/**/*.blade'])
+    .pipe(gulp.dest('./dist/assets/blade/'));
 });
 
 gulp.task('develop', function () {
@@ -60,7 +60,7 @@ gulp.task('develop', function () {
 });
 
 gulp.task('watch', function() {
-  return gulp.watch('./sass/**/*.sass', ['sass']);
+  return gulp.watch('./assets/sass/**/*.sass', ['sass']);
 });
 
 gulp.task('default',
@@ -72,11 +72,12 @@ gulp.task('build',
 
 
 function cssBundler(dest) {
-return gulp.src('./sass/**/*.sass')
+return gulp.src('./assets/sass/**/*.sass')
     .pipe(sourcemaps.init())
     .pipe(sass({
       indentedSyntax: true,
-      errLogToConsole: true
+      errLogToConsole: true,
+      includePaths: ['./assets/vendor']
     }))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
     .pipe(flatten())

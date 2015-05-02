@@ -6,7 +6,7 @@ html
     meta(content='width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no', name='viewport')
 
     title Remote
-    link(href="remote.css?ts=#{Date.now()}", rel='stylesheet')
+    link(href="css/remote.css?ts=#{Date.now()}", rel='stylesheet')
   body.startscreen
     header
       .search-bar
@@ -29,15 +29,16 @@ html
 
     // Libraries
     // @todo replace with automatic gulp minification
-    script(src='libraries/socket.io-client/socket.io.js')
-    script(src='libraries/lodash/lodash.min.js')
-    script(src='libraries/jquery/dist/jquery.min.js')
-    script(src='libraries/hash.js/hash.min.js')
+    script(src='vendor/socket.io-client/socket.io.js')
+    script(src='vendor/lodash/lodash.min.js')
+    script(src='vendor/jquery/dist/jquery.min.js')
+    script(src='vendor/hash.js/hash.min.js')
 
     // External scripts
     script(src='//connect.soundcloud.com/sdk.js')
 
     // App files
     script(src='/blade/blade.js')
-    script(src='js/remood.js')
-    script(src='remote.js')
+    script(src='/js/remood.js')
+
+    script(src='js/remote.js')

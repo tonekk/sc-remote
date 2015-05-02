@@ -1,6 +1,6 @@
 {
   "name": "sc-remote",
-  "version": "0.4.1",
+  "version": "0.4.3",
   "description": "Open a page on your multi-media system and controll it per smartphone",
   "main": "app.js",
   "scripts": {

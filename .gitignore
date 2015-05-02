@@ -1,5 +1,5 @@
-html/*.html
-css/*.css
+dist
+assets/vendor
+assets/css
 node_modules
-libraries
 .sass-cache
