@@ -64,10 +64,10 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default',
-  ['sass', 'bower', 'watch', 'develop']
+  ['bower', 'sass', 'watch', 'develop']
 );
 gulp.task('build',
-  ['build:clean', 'build:sass', 'build:js', 'build:templates', 'build:bower']
+  ['build:clean', 'build:bower', 'build:sass', 'build:js', 'build:templates']
 );
 
 
